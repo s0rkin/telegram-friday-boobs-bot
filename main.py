@@ -42,9 +42,6 @@ async def main():
         # os.getenv("TELEGRAM_USER") // int(os.getenv("TELEGRAM_GROUP"))
         ret_value = await client.send_file(int(os.getenv("TELEGRAM_GROUP")), types.InputMediaUploadedPhoto(uploaded, spoiler=True))
         ret_value = await client.send_message(int(os.getenv("TELEGRAM_GROUP")), workday.work_day + "\n" + "\n" + gpt.gpt_text + "\n" + "\n" + text_from, parse_mode="html")
-        #print("---------------------------------------------------------------------------")
-#        ret_value = await client.send_file("s0rkin", types.InputMediaUploadedPhoto(uploaded, spoiler=True))
-#        ret_value = await client.send_message("s0rkin", get_day() + "\n" + "\n" + get_text() + "\n" + "\n" + text_from, parse_mode="html")
     except Exception as e:
         print(f"Exception while sending the message - {e}")
     else:
