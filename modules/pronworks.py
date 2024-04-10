@@ -23,11 +23,6 @@ header = {
     "referer": os.getenv("BOOBS_URL") + "/ru/generate/image"
     }
 
-header_img = {
-    "User-Agent": os.getenv("HEADER_AGENT"),
-    "referer": os.getenv("BOOBS_URL") + "/ru/generate/image"
-}
-
 #girls hair for random
 girls = ["Black hair", "Brown hair", "Blonde hair", "Red hair", "Auburn hair", "Brunette hair", "Gray hair", "White hair", "Platinum hair", "Silver hair", "Golden hair", "Copper hair", "Mahogany hair", "Caramel hair", "Honey hair", "Ash hair", "Burgundy hair", "Violet hair", "Blue hair", "Green hair", "Pink hair", "Rainbow hair", "Ombre hair", "Balayage hair", "Highlights hair", "Lowlights hair"]
 
