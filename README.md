@@ -1,4 +1,4 @@
-# BOT "Friday boobs" for telegram, on your profile!
+# BOT "Friday boobs" for telegram, on your profile! 18+ only!
 ![Screenshot_1](https://github.com/s0rkin/telegram-friday-boobs-bot/assets/12657938/c74911ee-85fc-47f7-b726-c182fc378d9b)
 <br>
 <p>CONFIG in <code>.env</code>:
