@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 #----------------------------------------------------------------------------
 # Created By  : s0rkin
-# Created Date: Jul 4, 2022
+# Created Date: Aug 20, 2023
 # Links       : https://github.com/s0rkin/
-# version ='2.1'
+# version ='1.0'
 # ---------------------------------------------------------------------------
 
 import os

@@ -1,3 +1,12 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
+#----------------------------------------------------------------------------
+# Created By  : s0rkin
+# Created Date: Aug 20, 2023
+# Links       : https://github.com/s0rkin/
+# version ='1.0'
+# ---------------------------------------------------------------------------
+
 import os
 import requests
 import json
