@@ -1,5 +1,5 @@
 # BOT "Friday boobs" for telegram, on your profile!
-![Screenshot_1](https://github-production-user-asset-6210df.s3.amazonaws.com/12657938/321216868-bb640698-2a97-4416-8851-cdb63a1bdd91.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240410%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240410T112826Z&X-Amz-Expires=300&X-Amz-Signature=7123d1f6dd361b1364805681a851dee991c46dadfb83d7e0abff9ab11b6c9a73&X-Amz-SignedHeaders=host&actor_id=12657938&key_id=0&repo_id=784685689)
+![Screenshot_1](https://github.com/s0rkin/telegram-friday-boobs-bot/assets/12657938/c74911ee-85fc-47f7-b726-c182fc378d9b)
 <br>
 <p>CONFIG in <code>.env</code>:
 <code>
