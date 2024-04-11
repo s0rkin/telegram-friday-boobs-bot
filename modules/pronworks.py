@@ -77,8 +77,8 @@ def get_boobs(num_retries = 90):
                 local_file_name = os.getenv("PATH_FOR_IMG") + get_id + ".png"
                 img_url = t["results"]["image"]
                 print(img_url)
-                rr = requests.get(os.getenv("BOOBS_URL") + img_url, stream=True, headers=header)
-                open(local_file_name, "wb").write(rr.content)
+                r_img = requests.get(os.getenv("BOOBS_URL") + img_url, stream=True, headers=header)
+                open(local_file_name, "wb").write(r_img.content)
                 return local_file_name
             except:
                 if attempt_no < (num_retries - 1):
