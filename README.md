@@ -4,7 +4,7 @@
 <p>CONFIG in <code>.env</code>:
 <code>
     PATH_FOR_IMG="/home/user/"
-    IMG_EXCEPT=""
+    IMG_EXCEPT="except.mp3"
     TELEGRAM_API_ID=
     TELEGRAM_API_HASH=
     TELEGRAM_STRING_SESSION=
