@@ -39,7 +39,7 @@ async def main():
     try:
         uploaded = await client.upload_file(pronworks.get_boobs_file)
         #client.send_message need int for group only!
-        # os.getenv("TELEGRAM_USER") // int(os.getenv("TELEGRAM_GROUP"))
+        #(os.getenv("TELEGRAM_USER") // (int(os.getenv("TELEGRAM_GROUP"))
         ret_value = await client.send_file(int(os.getenv("TELEGRAM_GROUP")), types.InputMediaUploadedPhoto(uploaded, spoiler=True))
         ret_value = await client.send_message(int(os.getenv("TELEGRAM_GROUP")), workday.work_day + "\n" + "\n" + gpt.gpt_text + "\n" + "\n" + text_from, parse_mode="html")
     except Exception as e:
