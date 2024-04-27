@@ -34,7 +34,6 @@ def get_day(num_retries = 10):
         try:
             r = requests.get(os.getenv("CALENDAR_URL"), headers = header, params = param)
             t = json.loads(r.text)
-            print(r.text)
             #return full string for telegram "text" + get_day()
             if t["work"] == "1": #work day
                 return "Рабочий день заканчивается! 😎😎😎"
@@ -52,5 +51,3 @@ def get_day(num_retries = 10):
             else:
                 print("API (get_day) ERROR! 10 retries expired!")
                 return "Рабочий день заканчивается! 😎😎😎 Сегодня ХЗ какой день."
-            
-work_day = get_day()

@@ -52,5 +52,3 @@ def get_text(num_retries = 15):
             else:
                 print("API (get_text) ERROR! " + str(num_retries) + " retries expired! Return default text")
                 return "ChatGPT error! nothing will be send -_-"
-            
-gpt_text = get_text()

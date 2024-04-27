@@ -18,12 +18,17 @@ from dotenv import load_dotenv
 #load file .env config
 load_dotenv()
 
-today = datetime.datetime.today()
+today = datetime.datetime.now()
 
 print("---------------------------------------------------------------------------")
 print(today)
 
 text_from = "<code>Сгенерировано нейросетью PornWorks.ai + ChatGPT! by s0rry</code>"
+
+#crutch to disable the delay when sending img + message
+boobs = pronworks.get_boobs_file
+work = workday.get_day()
+get_gpt = gpt.get_text()
 
 #TELEGRAM CLIENT
 try:
@@ -37,11 +42,11 @@ else:
 #main function for send message to telegram chat
 async def main():
     try:
-        uploaded = await client.upload_file(pronworks.get_boobs_file)
+        uploaded = await client.upload_file(boobs)
         #client.send_message need int for group only!
         #(os.getenv("TELEGRAM_USER") // (int(os.getenv("TELEGRAM_GROUP"))
         ret_value = await client.send_file(int(os.getenv("TELEGRAM_GROUP")), types.InputMediaUploadedPhoto(uploaded, spoiler=True))
-        ret_value = await client.send_message(int(os.getenv("TELEGRAM_GROUP")), workday.work_day + "\n" + "\n" + gpt.gpt_text + "\n" + "\n" + text_from, parse_mode="html")
+        ret_value = await client.send_message(int(os.getenv("TELEGRAM_GROUP")), work + "\n" + "\n" + get_gpt + "\n" + "\n" + text_from, parse_mode="html")
     except Exception as e:
         print(f"Exception while sending the message - {e}")
     else:
