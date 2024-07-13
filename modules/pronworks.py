@@ -46,6 +46,7 @@ data = {
     #SAMPLER (generator) - it can be change, see more on pornwork.ai
     "samplerName": "DPM++ 2S a Karras",
     "sharpness": 10,
+    "ratio": "1x1",
     #"size": "512x768", 
 }
 
