@@ -23,7 +23,7 @@
 u need to add some base URL -
 </p>
 <p>
-GPT_URL - chatgpt url , google it! can be free! =)</text>
+FOR GPT good idea - use Gpt4free https://github.com/xtekky/gpt4free/tree/main</text>
 </p>
 <p>then u need add - 
 </p>
