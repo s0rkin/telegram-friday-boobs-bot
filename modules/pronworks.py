@@ -41,7 +41,7 @@ data = {
     "nsfw": False,
     "performance": "quality",
     #ENABLED PROMT! - it can be change - see more on pornwork.ai
-    "prompt": "1girl, underboob, skindentation, long hair, breasts, (huge breasts:1.2), (beautiful face:1.2), (makeup, lipstick, blush, eyeliner:.7), (colorful:.6), realistic, sweaty skin, perfect body, " + girls[random.randint(0,25)],
+    "prompt": "1girl, underboob, skindentation, long hair, breasts, (huge breasts:1.2), (beautiful face:1.2), (makeup, lipstick, blush, eyeliner:.7), (colorful:.6), realistic, sweaty skin, perfect body, " + random.choice(girls),
     "resources": [],
     #SAMPLER (generator) - it can be change, see more on pornwork.ai
     "samplerName": "DPM++ 2S a Karras",
