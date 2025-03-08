@@ -4,17 +4,16 @@
 # Created By  : s0rkin
 # Created Date: Aug 20, 2023
 # Links       : https://github.com/s0rkin/
-# version ='1.0'
+# version ='1.1'
 # ---------------------------------------------------------------------------
 
 import os
 import datetime
+import telebot
 
-from modules import gpt, pronworks, workday
-from telethon.sync import TelegramClient, types
-from telethon.sessions import StringSession
+from modules import gpt, workday, pronworks
+
 from dotenv import load_dotenv
-
 #load file .env config
 load_dotenv()
 
@@ -30,27 +29,27 @@ boobs = pronworks.get_boobs_file
 work = workday.get_day()
 get_gpt = gpt.get_text()
 
-#TELEGRAM CLIENT
-try:
-    client = TelegramClient(StringSession(os.environ.get("TELEGRAM_STRING_SESSION")), os.environ.get("TELEGRAM_API_ID"), os.environ.get("TELEGRAM_API_HASH"))
-    client.start()
-except Exception as e:
-    print(f"Exception while starting the client - {e}")
-else:
-    print("Client started")
+# bot
+bot = telebot.TeleBot(os.getenv("TELEGRAM_TOKEN"))
 
-#main function for send message to telegram chat
-async def main():
+# main function
+def main():
     try:
-        uploaded = await client.upload_file(boobs)
-        #client.send_message need int for group only!
-        #(os.getenv("TELEGRAM_USER") // (int(os.getenv("TELEGRAM_GROUP"))
-        ret_value = await client.send_file(int(os.getenv("TELEGRAM_GROUP")), types.InputMediaUploadedPhoto(uploaded, spoiler=True))
-        ret_value = await client.send_message(int(os.getenv("TELEGRAM_GROUP")), work + "\n" + "\n" + get_gpt + "\n" + "\n" + text_from, parse_mode="html")
+        # uploaded photo
+        uploaded = open(boobs, "rb")
+
+        ret_value = bot.send_photo(
+                int(os.getenv("TELEGRAM_GROUP")),
+                uploaded,
+                caption=work + "\n\n" + get_gpt + "\n" + "\n" + text_from,
+                parse_mode="html",
+                has_spoiler=True
+            )
     except Exception as e:
         print(f"Exception while sending the message - {e}")
     else:
         print(f"Message sent. Return Value {ret_value}")
 
-with client:
-    client.loop.run_until_complete(main())
+#start main
+if __name__ == "__main__":
+    main()

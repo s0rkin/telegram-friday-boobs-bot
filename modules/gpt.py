@@ -4,7 +4,7 @@
 # Created By  : s0rkin
 # Created Date: Aug 20, 2023
 # Links       : https://github.com/s0rkin/
-# version ='1.0'
+# version ='1.1'
 # ---------------------------------------------------------------------------
 
 import os
@@ -17,33 +17,57 @@ from dotenv import load_dotenv
 load_dotenv()
 
 header = {
+    "Accept": "application/json; charset=utf-8",
+    "Content-Type": "application/json; charset=utf-8",
     "User-Agent": os.getenv("HEADER_AGENT"),
     "X-Requested-With": os.getenv("HEADER_REQUEST"), 
-    "Authorization": os.getenv("HEADER_AUTHORIZATION")
     }
 
 post_info = {
+  "model": "gpt-4o-mini", #gpt-4
+  "temperature": 0.9, #chaptgpt recomend 0.7-1.0
+  "stream": False, 
   "messages": [
     {
         "role": "user", #role's (system, assistant, user)
         "content": "напиши уникальное,забавное,короткое поздравление для коллег в честь вечера пятницы"
     }
-  ],
-  "model": "gpt-3.5-turbo", #gpt-4
-  "temperature": 1, #chaptgpt recomend 0.7-1.0
-  "presence_penalty": 0,
-  "top_p": 1, #chaptgpt recomend 0.7-1.0
-  "frequency_penalty": 0,
-  "stream": False
+  ]
 }
 
 def get_text(num_retries = 15):
     for attempt_no in range(num_retries):
         try:
             r = requests.post(os.getenv("GPT_URL"), headers=header, json=post_info)
+            r.encoding = "utf-8"
+            print(r.text)
             t = json.loads(r.text)
             j = t["choices"][0]["message"]["content"]
-            return j
+            #Очередной костыль для GPT, когда он игнорирует флаг stream: False
+            if "data:" in j:
+                # Разделяем текст на строки
+                lines = j.strip().split("\n\n")
+
+                result = ""
+                for line in lines:
+                    try:
+                        # Убираем префикс "data: "
+                        json_str = line.replace("data: ", "")
+
+                        # Пропускаем пустые строки
+                        if not json_str.strip():
+                            continue
+                        
+                        obj = json.loads(json_str)
+
+                        if isinstance(obj, dict) and "content" in obj and obj["content"]:
+                            result += obj["content"]
+                    except json.JSONDecodeError as e:
+                        print(f"Ошибка декодирования JSON: {e}. Строка: {line}")
+                        continue
+                return result
+            else:
+                return j
         except:
             if attempt_no < (num_retries - 1):
                 time.sleep(60) #wait 30sec for api response if have error. DONT SPAM!
