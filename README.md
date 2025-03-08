@@ -10,9 +10,9 @@
     TELEGRAM_STRING_SESSION=
     CALENDAR_URL="https://api.sm.su/v1/calendar/business/"
     GPT_URL=""
-    BOOBS_URL="https://www.pornworks.ai"
-    BOOBS_API_URL="https://www.pornworks.ai/api/v2/generate"
-    BOOBS_API_GENERATOR_URL="https://www.pornworks.ai/api/v2/generations/"
+    BOOBS_URL="https://www.pornworks.com"
+    BOOBS_API_URL="https://www.pornworks.com/api/v2/generate"
+    BOOBS_API_GENERATOR_URL="https://www.pornworks.com/api/v2/generations/"
     TELEGRAM_GROUP=
     TELEGRAM_USER="User"
     HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
@@ -23,7 +23,7 @@
 u need to add some base URL -
 </p>
 <p>
-GPT_URL - chatgpt url , google it! can be free! =)</text>
+GPT_URL - FOR GPT good idea - use Gpt4free https://github.com/xtekky/gpt4free/tree/main</text>
 </p>
 <p>then u need add - 
 </p>
