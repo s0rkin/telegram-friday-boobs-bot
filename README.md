@@ -1,10 +1,18 @@
 # BOT "Friday boobs" for telegram, on your profile! 18+ only!
 ![Screenshot_1](https://github.com/s0rkin/telegram-friday-boobs-bot/assets/12657938/c74911ee-85fc-47f7-b726-c182fc378d9b)
 <br>
+<p>Current ver. 1.1
+<code>
+*add python 3.8
+*delete telethon
+*add telebot
+*small fix'es pron
+</code>
+</p>
 <p>CONFIG in <code>.env</code>:
 <code>
     PATH_FOR_IMG="/home/user/"
-    IMG_EXCEPT="except.mp3"
+    IMG_EXCEPT="/home/user/404.jpg"
     TELEGRAM_API_ID=
     TELEGRAM_API_HASH=
     TELEGRAM_STRING_SESSION=
