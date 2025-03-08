@@ -3,7 +3,6 @@
 <br>
 <p>Current ver. 1.1
 <code>
-*add python 3.8
 *delete telethon
 *add telebot
 *small fix'es pron
