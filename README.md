@@ -8,6 +8,13 @@
 *small fix'es pron
 </code>
 </p>
+<p>Installing libraries:
+<code>pip3 install -r ./requirements.txt</code>
+</p>
+<p>
+  FOR GPT good idea - use Gpt4free https://github.com/xtekky/gpt4free/tree/main
+</p>
+<br>
 <p>CONFIG in <code>.env</code>:
 <code>
     PATH_FOR_IMG="/home/user/"
