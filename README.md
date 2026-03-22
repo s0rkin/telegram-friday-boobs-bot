@@ -55,6 +55,9 @@ TELEGRAM_API_HASH=
 <p>
 TELEGRAM_STRING_SESSION=
 </p>
+<p>
+PROXY_HOST="" - your proxy for telegram/pronworks
+</p>
 <p>ADD TO CRON, EXAMPLE:
 <code>25 18 * * 5 /usr/bin/python3 /home/user/main.py >> /var/log/main_boobs_friday_bot.log</code>
 </p>
