@@ -10,6 +10,7 @@
 import os
 import datetime
 import telebot
+from telebot import apihelper
 
 from modules import gpt, workday, pronworks
 
@@ -31,6 +32,11 @@ get_gpt = gpt.get_text()
 
 # bot
 bot = telebot.TeleBot(os.getenv("TELEGRAM_TOKEN"))
+
+apihelper.proxy = {
+    "http": os.getenv("PROXY_HOST"),
+    "https": os.getenv("PROXY_HOST"),
+}
 
 # main function
 def main():
