@@ -24,6 +24,7 @@
     TELEGRAM_USER="User"
     HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
     HEADER_REQUEST="XMLHttpRequest"
+    PROXY_HOST=""
 </code>
 </p>
 <p>
