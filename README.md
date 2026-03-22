@@ -12,19 +12,20 @@
 <code>
     PATH_FOR_IMG="/home/user/"
     IMG_EXCEPT="/home/user/404.jpg"
-    TELEGRAM_API_ID=
-    TELEGRAM_API_HASH=
-    TELEGRAM_STRING_SESSION=
+    TELEGRAM_API_ID=""
+    TELEGRAM_API_HASH=""
+    TELEGRAM_STRING_SESSION=""
+    TELEGRAM_TOKEN=""
     CALENDAR_URL="https://api.sm.su/v1/calendar/business/"
     GPT_URL=""
     BOOBS_URL="https://www.pornworks.com"
     BOOBS_API_URL="https://www.pornworks.com/api/v2/generate"
     BOOBS_API_GENERATOR_URL="https://www.pornworks.com/api/v2/generations/"
-    TELEGRAM_GROUP=
-    TELEGRAM_USER="User"
-    HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
-    HEADER_REQUEST="XMLHttpRequest"
     PROXY_HOST=""
+    TELEGRAM_GROUP=""
+    TELEGRAM_USER="User"
+    HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
+    HEADER_REQUEST="XMLHttpRequest"
 </code>
 </p>
 <p>
