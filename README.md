@@ -2,18 +2,18 @@
 
 ![Screenshot 1](https://github.com/s0rkin/telegram-friday-boobs-bot/assets/12657938/c74911ee-85fc-47f7-b726-c182fc378d9b)
 
-## Описание
+## Description
 
-Телеграм-бот для автоматической публикации контента (18+). Публикует изображения по пятницам.
+A Telegram bot for automatic publishing of adult content (18+). Posts images on Fridays.
 
-## Текущая версия
+## Current version
 
 - 1.1
-- telethon удалён
-- telebot добавлен
-- мелкие исправления в pron-модуле
+- telethon removed
+- telebot added
+- minor fixes in the pron module
 
-## Конфигурация (.env)
+## Configuration (.env)
 
 ```dotenv
 PATH_FOR_IMG="/home/user/"
@@ -32,48 +32,49 @@ HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 HEADER_REQUEST="XMLHttpRequest"
 ```
 
-### Обязательные поля
+### Required fields
 
 - `TELEGRAM_API_ID`, `TELEGRAM_API_HASH`, `TELEGRAM_STRING_SESSION`
-- `PATH_FOR_IMG` — путь к изображениям
-- `IMG_EXCEPT` — резервное изображение (404.jpg)
+- `PATH_FOR_IMG` — path to images
+- `IMG_EXCEPT` — fallback image (404.jpg)
 
-### Опции
+### Optional fields
 
-- `GPT_URL` — URL для GPT (рекомендуется gpt4free: https://github.com/xtekky/gpt4free/tree/main)
-- `TELEGRAM_GROUP` — `-1234567890` (для отправки в группу)
-- `TELEGRAM_USER` — имя пользователя для личных сообщений
-- `HEADER_AUTHORIZATION` — авторизация для GPT (см. `gpt.py`)
+- `GPT_URL` — URL for GPT (recommended: gpt4free: https://github.com/xtekky/gpt4free/tree/main)
+- `TELEGRAM_GROUP` — `-1234567890` (for group messages)
+- `TELEGRAM_USER` — username for direct messages
+- `HEADER_AUTHORIZATION` — authorization for GPT (see `gpt.py`)
 
-## Как получить данные Telegram
+## How to get Telegram credentials
 
-1. Зарегистрировать приложение в Telegram и получить `API_ID` и `API_HASH`.
+1. Register an app in Telegram and get `API_ID` and `API_HASH`.
+2. Generate `STRING_SESSION` using `get_string_session.py`.
 
-## Запуск
+## Run
 
 ```bash
 python3 main.py
 ```
 
-## Поставить в cron (по пятницам в 18:25)
+## Cron schedule (every Friday at 18:25)
 
 ```cron
 25 18 * * 5 /usr/bin/python3 /home/user/main.py >> /var/log/main_boobs_friday_bot.log 2>&1
 ```
 
-## Полезные заметки
+## Notes
 
-- `GPT_URL` — адрес ChatGPT/клон-сервиса.
-- Контент 18+ — используйте ответственно.
+- `GPT_URL` is the ChatGPT/clone service URL.
+- This is 18+ content, use responsibly.
 
-## ⚠️ Важно
+## ⚠️ Important
 
-- Не публикуйте `.env` с реальными данными.
+- Do not publish `.env` with real credentials.
 
-## 📄 Лицензия
+## 📄 License
 
 MIT
 
-## 🤝 Вклад в проект
+## 🤝 Contribution
 
-Предложения по улучшению приветствуются. Открывайте issue или pull request.
+Contributions are welcome. Open an issue or pull request.
