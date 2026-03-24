@@ -1,4 +1,4 @@
-# BOT "Friday boobs" for Telegram (на ваш профиль) 18+ only!
+# BOT "Friday boobs" for Telegram - 18+ only!
 
 ![Screenshot 1](https://github.com/s0rkin/telegram-friday-boobs-bot/assets/12657938/c74911ee-85fc-47f7-b726-c182fc378d9b)
 
