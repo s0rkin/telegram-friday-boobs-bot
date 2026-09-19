@@ -29,6 +29,8 @@ GPT_URL=""
 BOOBS_URL="https://www.pornworks.com"
 BOOBS_API_URL="https://www.pornworks.com/api/v2/generate"
 BOOBS_API_GENERATOR_URL="https://www.pornworks.com/api/v2/generations/"
+PORNWORKS_USERNAME=""
+PORNWORKS_PASSWORD=""
 TELEGRAM_GROUP=
 HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 HEADER_REQUEST="XMLHttpRequest"
@@ -48,6 +50,7 @@ BOOBS_BROWSER_TIMEOUT_MS="90000"
 
 - `GPT_URL` — URL for GPT (recommended: gpt4free: https://github.com/xtekky/gpt4free/tree/main)
 - `HEADER_AUTHORIZATION` — authorization for GPT (see `gpt.py`)
+- `PORNWORKS_USERNAME`, `PORNWORKS_PASSWORD` — PornWorks account credentials for increased account limits; omit both to use anonymous mode
 
 ## How to configure Telegram
 
@@ -66,6 +69,9 @@ xvfb-run -a -s '-screen 0 1280x800x24' .venv/bin/python main.py
 The CloakBrowser profile and browser binary are stored inside the project in
 `.cloakbrowser-profile` and `.cloakbrowser-cache`. The free legacy Chromium 146
 build is downloaded automatically on first run; no license key is required.
+When PornWorks credentials are configured, the bot signs in through the
+official login form and reuses the account session stored in the persistent
+profile. Credentials must only be stored in the ignored `.env` file.
 
 ## Cron schedule (every Friday at 18:25)
 

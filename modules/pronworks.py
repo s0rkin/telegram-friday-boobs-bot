@@ -24,6 +24,8 @@ GENERATOR_URL = os.getenv(
     "BOOBS_API_GENERATOR_URL", f"{BASE_URL}/api/v2/generations/"
 ).rstrip("/") + "/"
 GENERATOR_PAGE_URL = f"{BASE_URL}/en/generate/image"
+LOGIN_PAGE_URL = f"{BASE_URL}/en/login"
+ME_URL = f"{BASE_URL}/api/v2/me"
 
 # Girls hair for random.
 girls = [
@@ -80,6 +82,10 @@ class PornWorksApiError(PornWorksError):
     pass
 
 
+class PornWorksAuthenticationError(PornWorksError):
+    pass
+
+
 def _is_cloudflare_challenge(status, body):
     body_lower = body.lower()
     return status == 403 and (
@@ -126,6 +132,7 @@ class CloakBrowserClient:
 
         self.page = self.context.pages[0] if self.context.pages else self.context.new_page()
         self._open_generator()
+        self._ensure_authenticated()
 
     def _open_generator(self):
         timeout_ms = int(os.getenv("BOOBS_BROWSER_TIMEOUT_MS", "90000"))
@@ -164,6 +171,72 @@ class CloakBrowserClient:
 
     def close(self):
         self.context.close()
+
+    def _account_status(self):
+        return self.page.evaluate(
+            """
+            async (url) => {
+                const response = await fetch(url, {credentials: "include"});
+                return {status: response.status, body: await response.text()};
+            }
+            """,
+            ME_URL,
+        )
+
+    def _ensure_authenticated(self):
+        username = os.getenv("PORNWORKS_USERNAME")
+        password = os.getenv("PORNWORKS_PASSWORD")
+        if not username and not password:
+            return
+        if not username or not password:
+            raise PornWorksAuthenticationError(
+                "Both PORNWORKS_USERNAME and PORNWORKS_PASSWORD must be configured"
+            )
+
+        account = self._account_status()
+        if account["status"] == 200:
+            print("PornWorks account session is active")
+            return
+        if account["status"] != 401:
+            raise PornWorksAuthenticationError(
+                f"Could not check PornWorks account: HTTP {account['status']}"
+            )
+
+        timeout_ms = int(os.getenv("BOOBS_BROWSER_TIMEOUT_MS", "90000"))
+        self.page.goto(
+            LOGIN_PAGE_URL,
+            wait_until="domcontentloaded",
+            timeout=timeout_ms,
+        )
+
+        age_button = self.page.get_by_text("I'm 18 or older", exact=True)
+        if age_button.count():
+            age_button.first.click(force=True)
+
+        self.page.locator('input[name="username"]').fill(username, force=True)
+        self.page.locator('input[name="password"]').fill(password, force=True)
+        with self.page.expect_response(
+            lambda response: response.url == f"{BASE_URL}/api/v2/login"
+            and response.request.method == "POST",
+            timeout=timeout_ms,
+        ) as response_info:
+            self.page.locator('button[data-cy="login-button"]').click(force=True)
+
+        response = response_info.value
+        if response.status >= 400:
+            raise PornWorksAuthenticationError(
+                f"PornWorks login failed: HTTP {response.status}: {response.text()[:200]}"
+            )
+
+        # Let the site persist its token before returning to the generator.
+        self.page.wait_for_timeout(1500)
+        self._open_generator()
+        account = self._account_status()
+        if account["status"] != 200:
+            raise PornWorksAuthenticationError(
+                "PornWorks login succeeded but the account session was not saved"
+            )
+        print("PornWorks account login succeeded")
 
     def request_json(self, method, url, payload=None):
         result = self.page.evaluate(
