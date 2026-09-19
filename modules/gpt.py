@@ -23,6 +23,10 @@ header = {
     "X-Requested-With": os.getenv("HEADER_REQUEST"), 
     }
 
+session = requests.Session()
+# GPT is hosted separately from the proxied PornWorks and Telegram traffic.
+session.trust_env = False
+
 post_info = {
 #  "model": "gpt-4", #gpt-4
 #  "provider": "Yqcloud",
@@ -54,7 +58,10 @@ post_info = {
 def get_text(num_retries = 15):
     for attempt_no in range(num_retries):
         try:
-            r = requests.post(os.getenv("GPT_URL"), headers=header, json=post_info)
+            r = session.post(
+                os.getenv("GPT_URL"), headers=header, json=post_info, timeout=60
+            )
+            r.raise_for_status()
             r.encoding = "utf-8"
             print(r.text)
             t = json.loads(r.text)

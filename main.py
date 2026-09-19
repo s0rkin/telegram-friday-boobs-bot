@@ -23,7 +23,7 @@ today = datetime.datetime.now()
 print("---------------------------------------------------------------------------")
 print(today)
 
-text_from = "<code>Сгенерировано нейросетью PornWorks.ai + ChatGPT! by s0rry</code>"
+text_from = "<code>Сгенерировано нейросетью PornWorks.com + ChatGPT! by s0rry</code>"
 
 #crutch to disable the delay when sending img + message
 boobs = pronworks.get_boobs_file

@@ -48,7 +48,7 @@ BOOBS_BROWSER_TIMEOUT_MS="90000"
 
 ### Optional fields
 
-- `GPT_URL` — URL for GPT (recommended: gpt4free: https://github.com/xtekky/gpt4free/tree/main)
+- `GPT_URL` — URL for GPT (recommended gpt4free: https://github.com/xtekky/gpt4free/tree/main)
 - `HEADER_AUTHORIZATION` — authorization for GPT (see `gpt.py`)
 - `PORNWORKS_USERNAME`, `PORNWORKS_PASSWORD` — PornWorks account credentials for increased account limits; omit both to use anonymous mode
 
