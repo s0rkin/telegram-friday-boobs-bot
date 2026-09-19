@@ -8,10 +8,15 @@ A Telegram bot for automatic publishing of adult content (18+). Posts images on 
 
 ## Current version
 
-- 1.1
+- 1.2
 - telethon removed
 - telebot added
 - minor fixes in the pron module
+- PornWorks requests now run through the free CloakBrowser Chromium 146 build.
+- Added a persistent browser profile, proxy support, and Cloudflare challenge detection.
+- Added Xvfb-based server startup without a permanently running browser or VNC session.
+- API errors and PornWorks generation limits now return the configured fallback image without unnecessary retries.
+- Updated and consolidated Python dependencies; removed obsolete Playwright browser files and duplicate packages.
 
 ## Configuration (.env)
 
@@ -30,6 +35,9 @@ TELEGRAM_GROUP=
 TELEGRAM_USER="User"
 HEADER_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
 HEADER_REQUEST="XMLHttpRequest"
+PROXY_HOST="http://host:port"
+BOOBS_BROWSER_HEADLESS="false"
+BOOBS_BROWSER_TIMEOUT_MS="90000"
 ```
 
 ### Required fields
@@ -53,14 +61,42 @@ HEADER_REQUEST="XMLHttpRequest"
 ## Run
 
 ```bash
-python3 main.py
+sudo apt-get install xvfb
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+xvfb-run -a -s '-screen 0 1280x800x24' .venv/bin/python main.py
 ```
+
+The CloakBrowser profile and browser binary are stored inside the project in
+`.cloakbrowser-profile` and `.cloakbrowser-cache`. The free legacy Chromium 146
+build is downloaded automatically on first run; no license key is required.
 
 ## Cron schedule (every Friday at 18:25)
 
 ```cron
-25 18 * * 5 /usr/bin/python3 /home/user/main.py >> /var/log/main_boobs_friday_bot.log 2>&1
+25 18 * * 5 cd /home/user/boobs && xvfb-run -a -s '-screen 0 1280x800x24' .venv/bin/python main.py >> /var/log/main_boobs_friday_bot.log 2>&1
 ```
+
+## Project requirements
+
+- Linux with Python 3.10 or newer and the `venv` module.
+- Xvfb, required to run Chromium in headful mode on a server without a display.
+- CloakBrowser Chromium, downloaded automatically on the first run.
+- A writable directory configured by `PATH_FOR_IMG` and an existing fallback image configured by `IMG_EXCEPT`.
+- Network access to PornWorks, Telegram, the calendar API, and the configured GPT endpoint.
+- A proxy supporting the URL configured by `PROXY_HOST`, when proxying is enabled.
+
+Only direct Python dependencies are listed in `requirements.txt`; pip installs
+their transitive dependencies automatically inside `.venv`.
+
+CloakBrowser uses a source-patched Chromium build and a persistent profile to
+keep the browser fingerprint consistent between scheduled runs. The free build
+is sufficient for the bot's single browser session.
+
+PornWorks may respond with `SIGNUP_FOR_INCREASE_LIMIT` after Cloudflare has
+already been passed. This is the site's free-generation limit, not a browser or
+proxy error; generation then requires a PornWorks account or a renewed limit.
+
 
 ## Notes
 

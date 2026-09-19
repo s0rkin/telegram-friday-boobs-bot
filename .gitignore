@@ -1,0 +1,8 @@
+.env
+.cloakbrowser-cache/
+.cloakbrowser-profile/
+.venv/
+__pycache__/
+*.pyc
+/upload/
+test.py
